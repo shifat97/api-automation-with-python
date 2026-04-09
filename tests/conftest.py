@@ -1,5 +1,7 @@
 import pytest
 import requests
+import math, random
+from faker import Faker
 
 @pytest.fixture
 def base_url():
@@ -39,3 +41,13 @@ def test_payload_structure():
     }
 
     return structure
+
+@pytest.fixture()
+def test_create_student_data():
+    return {
+        "name": Faker().name(),
+        "email": Faker().email(),
+        "department": "CSE",
+        "registrationId": Faker().unique.random_number(digits=6),
+        "age": Faker().random_number(digits=2)
+    }
